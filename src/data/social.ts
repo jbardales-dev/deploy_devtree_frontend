@@ -9,4 +9,5 @@ export const social : DevTreeLink[] = [
     { name: 'tiktok', url: '', enabled: false },
     { name: 'twitch', url: '', enabled: false },
     { name: 'linkedin', url: '', enabled: false },
+    { name: 'whatsapp', url: '', enabled: false },
 ]

@@ -59,3 +59,31 @@ export async function searchByHandle(handle: string) {
         }
     }
 }
+
+//Funciones de Follow
+export async function getFollowers(userId: string) {
+    try {
+        const { data } = await api<User[]>('/followers/' + userId)
+        return data
+    } catch (error) {
+        if (isAxiosError(error) && error.response) {
+            throw new Error(error.response.data.error)
+        }
+    }
+}
+
+export async function getFollowing(userId: string) {
+    try {
+        const { data } = await api<User[]>('/following/' + userId)
+        return data
+    } catch (error) {
+        if (isAxiosError(error) && error.response) {
+            throw new Error(error.response.data.error)
+        }
+    }
+}
+
+export async function checkIsFollowing(currentUserId: string, targetUserId: string) {
+  const { data } = await api<{ isFollowing: boolean }>(`/isFollowing/${currentUserId}/${targetUserId}`)
+  return data.isFollowing
+}
