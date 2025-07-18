@@ -2,7 +2,6 @@ import { useQuery } from '@tanstack/react-query';
 import { Navigate } from 'react-router-dom';
 import { getUser } from "../api/DevTreeAPI";
 import DevTree from "../components/DevTree";
-import ThemeToggle from "../components/ThemeToggle";
 
 export default function AppLayout() {
     const { data, isLoading, isError } = useQuery({
