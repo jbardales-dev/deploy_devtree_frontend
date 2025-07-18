@@ -6,7 +6,7 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      className="bg-gray-200 dark:bg-gray-800 text-black dark:text-white px-4 py-2 rounded-lg transition"
+      className="w-40 bg-gray-200 dark:bg-gray-800 text-slate-800 dark:text-white p-2 uppercase font-black text-xs rounded-lg cursor-pointer text-center"
     >
       {isDark ? '☀️ Modo Claro' : '🌙 Modo Oscuro'}
     </button>

@@ -29,7 +29,7 @@ export default function LoginView() {
 
   return (
     <>
-      <h1 className='text-4xl text-white font-bold'>Iniciar Sesión</h1>
+      <h1 className='text-4xl text-white text-center font-bold'>Iniciar Sesión</h1>
 
       <form
         onSubmit={handleSubmit(handleLogin)}
@@ -73,7 +73,7 @@ export default function LoginView() {
 
         <input
           type="submit"
-          className="bg-cyan-400 p-3 text-lg w-full uppercase text-slate-600 rounded-lg font-bold cursor-pointer"
+          className="bg-black p-3 text-lg w-full uppercase text-white rounded-lg font-bold cursor-pointer"
           value='Iniciar Sesión'
         />
       </form>

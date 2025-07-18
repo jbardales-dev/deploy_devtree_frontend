@@ -16,9 +16,6 @@ export default function AppLayout() {
     //if(data) return <DevTree data={data} />
     return (
         <div className="min-h-screen bg-white text-black dark:bg-gray-900 dark:text-white transition-colors duration-300">
-            <div className="absolute top-4 right-4 z-50">
-                <ThemeToggle />
-            </div>
             {data && <DevTree data={data} />}
         </div>
     );

@@ -130,7 +130,7 @@ export default function LinkTreeView() {
           />
         ))}
         <button
-          className="bg-cyan-400 p-2 text-lg w-full uppercase text-slate-600 rounded-lg font-bold"
+          className="bg-black hover:bg-lime-500 p-2 text-lg w-full uppercase text-white dark:text-white rounded-lg font-bold cursor-pointer"
           onClick={() => {
             const updatedLinks = buildUpdatedLinks()
 

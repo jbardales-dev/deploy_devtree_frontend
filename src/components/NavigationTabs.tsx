@@ -48,14 +48,14 @@ export default function NavigationTabs() {
                                 to={tab.href}
                                 className={classNames(
                                     location.pathname === tab.href
-                                        ? 'border-blue-500 text-blue-500'
+                                        ? 'border-lime-700 text-lime-700 dark:border-lime-500 dark:text-lime-500'
                                         : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700',
                                     'group inline-flex items-center border-b-2 py-4 px-1 text-xl'
                                 )}
                             >
                                 <tab.icon
                                     className={classNames(
-                                        location.pathname === tab.href ? 'text-blue-500' : 'text-gray-400 group-hover:text-gray-500',
+                                        location.pathname === tab.href ? 'text-lime-700 dark:text-lime-500'  : 'text-gray-400 group-hover:text-gray-500',
                                         '-ml-0.5 mr-2 h-5 w-5'
                                     )}
                                     aria-hidden="true"
