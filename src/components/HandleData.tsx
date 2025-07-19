@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { SocialNetwork, UserHandle } from "../types"
 import api from "../config/axios"
 import { toast } from 'sonner'
+import { getUser } from "../api/DevTreeAPI"
 
 type HandleDataProps = {
     data: UserHandle
@@ -16,16 +17,15 @@ export default function HandleData({ data }: HandleDataProps) {
     useEffect(() => {
         const checkFollowStatus = async () => {
             try {
-                if (!data.handle) return; // Cambiado de if(data.handle) return
+                if (!data.handle) return;
 
-                console.log("Verificando estado de seguimiento:", data.handle);
+                const currentUser = await getUser();
+                console.log("Usuario actual autenticado:", currentUser); 
 
-                // Necesitas obtener el ID del usuario actual (de tu sistema de autenticación)
-                const currentUserId = "id-del-usuario-actual"; // Reemplaza esto con cómo obtienes el ID del usuario logueado
+                const currentUserId = currentUser?._id;
+                if (!currentUserId) return;
 
                 const response = await api.get(`/follow/status/${currentUserId}/${data.handle}`);
-                console.log("Respuesta del backend:", response.data);
-
                 setIsFollowing(response.data.isFollowing);
             } catch (error) {
                 console.error("Error al verificar seguimiento:", error);
@@ -36,25 +36,25 @@ export default function HandleData({ data }: HandleDataProps) {
     }, [data.handle]);
 
     const toggleFollow = async () => {
-    try {
-        setLoading(true)
+        try {
+            setLoading(true)
 
-        if (isFollowing) {
-            await api.delete(`/follow/${data.handle}`)
-            setIsFollowing(false)
-            toast.info(`Has dejado de seguir a @${data.handle}`)
-        } else {
-            await api.post(`/follow/${data.handle}`)
-            setIsFollowing(true)
-            toast.success(`Ahora sigues a @${data.handle}`)
+            if (isFollowing) {
+                await api.delete(`/follow/${data.handle}`)
+                setIsFollowing(false)
+                toast.info(`Has dejado de seguir a @${data.handle}`)
+            } else {
+                await api.post(`/follow/${data.handle}`)
+                setIsFollowing(true)
+                toast.success(`Ahora sigues a @${data.handle}`)
+            }
+        } catch (error: any) {
+            console.error("Error al seguir/dejar de seguir:", error)
+            toast.error("Hubo un error al intentar actualizar el seguimiento")
+        } finally {
+            setLoading(false)
         }
-    } catch (error: any) {
-        console.error("Error al seguir/dejar de seguir:", error)
-        toast.error("Hubo un error al intentar actualizar el seguimiento")
-    } finally {
-        setLoading(false)
     }
-}
 
     return (
         <div className="max-w-xl mx-auto px-4 py-10 text-white">
